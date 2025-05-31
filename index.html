@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Café Restaurante L'Express - Carta Digital</title>
+    <meta name="description" content="Carta digital del Café Restaurante L'Express en Valencia. Desayunos, menús del día, tapas y más.">
+    <meta name="keywords" content="restaurante, valencia, carta digital, menú, desayunos, tapas">
+    
+    <!-- Precargar fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- PWA Meta tags -->
+    <meta name="theme-color" content="#f59e0b">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="L'Express">
+    
+    <!-- Estilos -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    
+    <!-- Service Worker para PWA (opcional) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('SW registrado con éxito');
+                    })
+                    .catch(function(registrationError) {
+                        console.log('SW registro falló');
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
