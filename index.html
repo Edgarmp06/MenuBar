@@ -7,6 +7,11 @@
     <meta name="description" content="Carta digital del Café Restaurante L'Express en Valencia. Desayunos, menús del día, tapas y más.">
     <meta name="keywords" content="restaurante, valencia, carta digital, menú, desayunos, tapas">
     
+    <!-- FORZAR ACTUALIZACIÓN - Headers anti-caché -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <!-- Precargar fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,14 +26,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="L'Express">
     
-    <!-- Estilos -->
-    <link href="style.css" rel="stylesheet">
+    <!-- CAMBIO AQUÍ: Agregar versión a los archivos -->
+    <link href="style.css?v=20250131_001" rel="stylesheet">
 </head>
 <body>
     <div id="root"></div>
     
-    <!-- Scripts -->
-    <script src="app.js"></script>
+    <!-- CAMBIO AQUÍ: Agregar versión al JavaScript -->
+    <script src="app.js?v=20250131_001"></script>
     
     <!-- Service Worker para PWA (opcional) -->
     <script>
