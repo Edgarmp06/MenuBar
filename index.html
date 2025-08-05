@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -37,6 +37,22 @@
                 </div>
                 
                 <button id="theme-toggle" class="theme-toggle">🌙</button>
+                <div id="google_translate_element"></div>
+
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                includedLanguages: 'en,fr,de,it,pt,ca,eu,es',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+                </script>
+
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <div id="google_translate_element"></div>
+
+                
             </div>
             
             <div class="header-content">
@@ -47,32 +63,6 @@
                     <input type="text" id="search-input" placeholder="Buscar en el menú...">
                 </div>
                 
-                <!-- Filtro de alérgenos -->
-                <div class="allergen-filter">
-                    <button id="allergen-toggle">
-                        <span class="mobile-text">Filtros</span>
-                        <span class="desktop-text">Filtrar alérgenos</span>
-                        <span id="filter-count"></span>
-                    </button>
-                    
-                    <div id="allergen-dropdown" class="dropdown hidden">
-                        <div class="allergen-grid">
-                            <!-- EDITA AQUÍ LOS ALÉRGENOS DISPONIBLES -->
-                            <label><input type="checkbox" value="gluten"> Gluten</label>
-                            <label><input type="checkbox" value="lácteos"> Lácteos</label>
-                            <label><input type="checkbox" value="huevo"> Huevo</label>
-                            <label><input type="checkbox" value="pescado"> Pescado</label>
-                            <label><input type="checkbox" value="crustáceos"> Crustáceos</label>
-                            <label><input type="checkbox" value="frutos secos"> Frutos secos</label>
-                            <label><input type="checkbox" value="soja"> Soja</label>
-                            <label><input type="checkbox" value="sulfitos"> Sulfitos</label>
-                        </div>
-                        <div class="dropdown-actions">
-                            <button id="clear-filters">Borrar</button>
-                            <button id="apply-filters">Aplicar</button>
-                        </div>
-                    </div>
-                </div>
                 
                 <!-- Navegación de categorías -->
                 <nav class="category-nav">
@@ -333,28 +323,31 @@
                     <div class="menu-options">
                         <div class="option-group">
                             <h4>Primer plato:</h4>
-                            <ul>
-                                <li>Ensalada mixta con atún y huevo</li>
-                                <li>Crema de calabaza con picatostes</li>
-                                <li>Arroz a la cubana</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
                         </div>
                         
                         <div class="option-group">
                             <h4>Segundo plato:</h4>
-                            <ul>
-                                <li>Pollo al horno con patatas</li>
-                                <li>Bacalao con tomate</li>
-                                <li>Carrillada ibérica con puré</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
                         </div>
                         
                         <div class="option-group">
                             <h4>Postre:</h4>
-                            <ul>
-                                <li>Flan casero</li>
-                                <li>Fruta del tiempo</li>
-                                <li>Helado</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -383,36 +376,32 @@
                     <div class="menu-options">
                         <div class="option-group">
                             <h4>Tapas:</h4>
-                            <ul>
-                                <li>Patatas bravas</li>
-                                <li>Boquerones en vinagre</li>
-                                <li>Ajo arriero</li>
-                                <li>Calamares a la romana</li>
-                                <li>Esgarraet</li>
-                                <li>Humus de garbanzos</li>
-                                <li>Pan con tomate</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
+                            
                         </div>
                         
                         <div class="option-group">
                             <h4>Plato principal:</h4>
-                            <ul>
-                                <li>Paella</li>
-                                <li>Lomo chuletero</li>
-                                <li>Espaguetti (boloñesa, carbonara o pesto)</li>
-                                <li>Salmon a la plancha</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
                         </div>
                         
                         <div class="option-group">
                             <h4>Postre:</h4>
-                            <ul>
-                                <li>Flan casero</li>
-                                <li>Flan de café casero</li>
-                                <li>Tarta de chocolate casera</li>
-                                <li>Pudding de fruta casero</li>
-                                <li>Helado de vainilla y chocolate</li>
-                                <li>Helado de turrón</li>
+                            <ul class="loading-container">
+                                <li class="loading-item">
+                                    <img src="/logo.jpg" alt="L'Express" style="width: 50px; height: 50px; border-radius: 50%; opacity: 0.7;">
+                                    <span class="loading-text">🍽️ Actualizando menú...</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -793,5 +782,8 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Conector Google Sheets -->
+<script src="menu-connector.js"></script>
 </body>
 </html>
