@@ -120,101 +120,19 @@ class CustomMenuUpdater {
         }
     }
 
-    // Actualizar menú fin de semana - ADAPTADO a tu estructura
-    async updateMenuFinSemana() {
-        const data = await this.fetchSheetData('MenuFinSemana');
-        const menu = { tapas: [], principales: [], postres: [], precios: {} };
-
-        console.log('📊 Datos recibidos de MenuFinSemana:', data);
-
-        // Si no hay datos, mostrar mensaje de error y salir
-        if (!data || data.length === 0) {
-            console.warn('⚠️ No se pudieron cargar datos del menú fin de semana');
-            this.showErrorMessage('#menu-finde', 'Menú fin de semana no disponible temporalmente');
-            return;
-        }
-
-        // Procesar datos según TU estructura
-        data.forEach(row => {
-            if (row.length >= 3) {
-                const [categoria, item, texto] = row;
-
-                // Mapear TUS categorías
-                if (categoria.includes('Tapa')) {
-                    menu.tapas.push(texto);
-                } else if (categoria.includes('Principal') || categoria.includes('Plato principal')) {
-                    menu.principales.push(texto);
-                } else if (categoria.includes('Postre')) {
-                    menu.postres.push(texto);
-                } else if (categoria.includes('Precio')) {
-                    if (item.includes('completo')) {
-                        menu.precios.completo = texto.replace('€', '');
-                    }
-                }
-            }
-        });
-
-        console.log('🍽️ Menú fin de semana procesado:', menu);
-
-        // Actualizar HTML - Tapas
-        const tapasUl = document.querySelector('#menu-finde .option-group:nth-child(1) ul');
-        if (tapasUl) {
-            if (menu.tapas.length > 0) {
-                tapasUl.innerHTML = menu.tapas.map(tapa => `<li>${tapa}</li>`).join('');
-                console.log('✅ Tapas actualizadas:', menu.tapas);
-            } else {
-                tapasUl.innerHTML = '<li>Consultar disponibilidad</li>';
-            }
-        }
-
-        // Actualizar HTML - Platos principales
-        const principalesUl = document.querySelector('#menu-finde .option-group:nth-child(2) ul');
-        if (principalesUl) {
-            if (menu.principales.length > 0) {
-                principalesUl.innerHTML = menu.principales.map(plato => `<li>${plato}</li>`).join('');
-                console.log('✅ Principales actualizados:', menu.principales);
-            } else {
-                principalesUl.innerHTML = '<li>Consultar disponibilidad</li>';
-            }
-        }
-
-        // Actualizar HTML - Postres
-        const postresUl = document.querySelector('#menu-finde .option-group:nth-child(3) ul');
-        if (postresUl) {
-            if (menu.postres.length > 0) {
-                postresUl.innerHTML = menu.postres.map(postre => `<li>${postre}</li>`).join('');
-                console.log('✅ Postres fin de semana actualizados:', menu.postres);
-            } else {
-                postresUl.innerHTML = '<li>Consultar disponibilidad</li>';
-            }
-        }
-
-        // Actualizar precio
-        if (menu.precios.completo) {
-            const precio = document.querySelector('#menu-finde .price-option h4');
-            if (precio) {
-                precio.textContent = `Menú Fin de Semana - ${menu.precios.completo}€`;
-                console.log('✅ Precio fin de semana actualizado:', menu.precios.completo);
-            }
-        }
-    }
-
-    // Actualizar ambos menús
+    // Actualizar menú del día
     async updateMenus() {
-        console.log('🔄 Actualizando menús del día y fin de semana...');
-        
+        console.log('🔄 Actualizando menú del día...');
+
         try {
-            await Promise.all([
-                this.updateMenuDia(),
-                this.updateMenuFinSemana()
-            ]);
-            
-            console.log('✅ Menús actualizados correctamente');
-            this.showNotification('✅ Menús actualizados desde Google Sheets');
-            
+            await this.updateMenuDia();
+
+            console.log('✅ Menú actualizado correctamente');
+            this.showNotification('✅ Menú actualizado desde Google Sheets');
+
         } catch (error) {
-            console.error('❌ Error al actualizar menús:', error);
-            this.showNotification('❌ Error al actualizar menús');
+            console.error('❌ Error al actualizar menú:', error);
+            this.showNotification('❌ Error al actualizar menú');
         }
     }
 
@@ -262,7 +180,7 @@ class CustomMenuUpdater {
 
         const updateBtn = document.createElement('button');
         updateBtn.innerHTML = '📋';
-        updateBtn.title = 'Actualizar menús del día';
+        updateBtn.title = 'Actualizar menú del día';
         updateBtn.style.cssText = `
             background: #f59e0b;
             color: white;
@@ -275,11 +193,11 @@ class CustomMenuUpdater {
             margin-left: 10px;
             transition: all 0.3s ease;
         `;
-        
+
         updateBtn.addEventListener('click', () => {
             updateBtn.style.transform = 'rotate(360deg)';
             updateBtn.disabled = true;
-            
+
             this.updateMenus().then(() => {
                 setTimeout(() => {
                     updateBtn.style.transform = 'rotate(0deg)';
@@ -287,7 +205,7 @@ class CustomMenuUpdater {
                 }, 1000);
             });
         });
-        
+
         headerTop.appendChild(updateBtn);
         console.log('✅ Botón de actualización agregado');
     }
@@ -295,20 +213,20 @@ class CustomMenuUpdater {
     // Inicializar
     init() {
         console.log('🚀 Iniciando Custom Menu Updater para L\'Express...');
-        
-        // Actualizar menús al cargar
+
+        // Actualizar menú al cargar
         setTimeout(() => {
             this.updateMenus();
         }, 2000);
-        
+
         // Actualizar cada 30 minutos
         setInterval(() => {
             this.updateMenus();
         }, 30 * 60 * 1000);
-        
+
         // Agregar botón de actualización manual
         this.addUpdateButton();
-        
+
         console.log('🔄 Auto-actualización cada 30 minutos');
     }
 }

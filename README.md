@@ -1,120 +1,247 @@
-🍺 Restaurante Express - Carta Digital
+# ☕ Café Restaurante L'Express - Carta Digital
 
-Carta digital moderna y responsive para restaurante/bar. Sistema completo de gestión de menú con interfaz intuitiva y diseño optimizado para móviles.
+Carta digital moderna y responsive para Café Restaurante L'Express en Valencia. Sistema completo de gestión de menú con actualización automática desde Google Sheets, interfaz intuitiva y diseño optimizado para todos los dispositivos.
 
-🌐 Web en producción
+## 🌐 Información del Restaurante
 
-👉 [Web](restauranteexpress.es)
+**Café Restaurante L'Express**
+📍 Plaça de Mossén Sorell, 4 bajo derecha, Ciutat Vella, 46003 Valencia
+📞 963 91 78 63
+📧 caferestaurantexpress@gmail.com
+📱 [@restaurante_lexpress](https://www.instagram.com/restaurante_lexpress)
 
-📋 Características
+**Horario:** Lunes a Viernes: 7:00 - 17:00 | Sábados y Domingos: Cerrado
 
-✅ Carta digital completa - Bebidas, comidas, precios actualizados
+## 🏆 Premios y Reconocimientos
 
-✅ Diseño responsive - Perfecto en móviles, tablets y desktop
+🥇 **Restaurant Guru 2025** - Recomendado
 
-✅ Interfaz moderna - UX/UI optimizada para clientes
+## ✨ Características Principales
 
-✅ Fácil navegación - Categorías organizadas y búsqueda intuitiva
+✅ **Carta digital completa** - Desayunos, cafés, almuerzo popular, menú del día, bocadillos, bebidas y vinos
 
-✅ Actualización sencilla - Gestión fácil de productos y precios
+✅ **Actualización automática** - Menú del día actualizado en tiempo real desde Google Sheets
 
-✅ Carga rápida - Optimizado para experiencia fluida
+✅ **Diseño responsive** - Perfecto en móviles, tablets y desktop
 
-🛠️ Tecnologías utilizadas
+✅ **Modo oscuro** - Tema claro/oscuro con preferencia guardada en localStorage
 
-Frontend: HTML5, CSS3, JavaScript
+✅ **Multi-idioma** - Traducción automática con Google Translate
 
-Hosting: Dominio propio + hosting web
+✅ **Buscador inteligente** - Encuentra rápidamente cualquier plato o bebida
 
-Control de versiones: Git & GitHub
+✅ **Legalmente conforme** - Cumple con RGPD, LSSI y normativa española
 
-Diseño: CSS Grid, Flexbox, Media Queries
+✅ **PWA-ready** - Optimizado para funcionar como aplicación web progresiva
 
-🎯 Problema que resuelve
+## 🛠️ Tecnologías Utilizadas
 
-Sustitución de cartas físicas por una solución digital moderna que:
+**Frontend:**
+- HTML5 (Semántico y accesible)
+- CSS3 (Grid, Flexbox, Variables CSS, Dark Mode)
+- JavaScript Vanilla (ES6+, Async/Await, Fetch API)
 
-Reduce costos de impresión
+**Servicios externos:**
+- Google Sheets API (Actualización dinámica del menú)
+- Google Translate (Multi-idioma)
+- Restaurant Guru (Badge de premio)
 
-Facilita actualizaciones de precios
+**Hosting:**
+- IONOS (Compatible con cualquier hosting estático)
 
-Mejora la experiencia del cliente
+**Diseño:**
+- Responsive Design
+- Mobile-first approach
+- CSS clamp() para tipografía fluida
+- Variables CSS para tematización
 
-Permite acceso rápido desde cualquier dispositivo
+## 📁 Estructura del Proyecto
 
-🚀 Instalación y desarrollo
+```
+MenuBar-main/
+├── index.html              # Página principal con la carta completa
+├── aviso-legal.html        # Aviso legal (LSSI)
+├── politica-privacidad.html # Política de privacidad (RGPD)
+├── politica-cookies.html   # Política de cookies
+├── style.css              # Estilos CSS con modo oscuro
+├── script.js              # JavaScript principal (navegación, búsqueda, UI)
+├── menu-connector.js      # Conexión con Google Sheets
+├── logo.jpg               # Logo del restaurante
+└── README.md              # Este archivo
+```
 
-bash
+## 🚀 Instalación y Despliegue
 
-# Clonar el repositorio
-git clone https://github.com/Edgarmp06/MenuBar.git
+### Opción 1: Hosting Estático (IONOS, GitHub Pages, Netlify, etc.)
 
-# Navegar al directorio
-cd MenuBar
+1. Sube todos los archivos a tu servidor
+2. Asegúrate de que `index.html` esté en la raíz
+3. Configura tu Google Sheet (ver sección Google Sheets)
+4. ¡Listo!
+
+### Opción 2: Desarrollo Local
+
+```bash
+# Clonar o descargar el proyecto
+cd MenuBar-main
+
+# Abrir con un servidor local (por ejemplo, con Python)
+python -m http.server 8000
 
 # Abrir en navegador
+# http://localhost:8000
+```
 
-open index.html
+## 📊 Configuración de Google Sheets
 
-📱 Funcionalidades principales
+El menú del día se actualiza automáticamente desde Google Sheets:
 
-Página principal con navegación por categorías
+1. **ID de la hoja:** `1yL0V8gf9XVADb-FwI-kFyi9WcmMJEaPe4uDmaBxRKzA`
+2. **Nombre de la hoja:** `MenuDia`
+3. **Estructura de columnas:**
+   - Columna A: Categoría (Primer plato, Segundo plato, Postre, Precio)
+   - Columna B: Item (descripción o tipo)
+   - Columna C: Texto (contenido a mostrar)
 
-Sección bebidas - Cervezas, refrescos, licores
+4. **Hacer la hoja pública:**
+   - Archivo → Compartir → Publicar en la web
+   - O: Compartir → Cualquier persona con el enlace puede ver
 
-Sección comidas - Tapas, raciones, platos principales
+5. **Actualización:** El menú se actualiza automáticamente cada 30 minutos y al cargar la página
 
-Sistema de precios - Información clara y actualizada
+## 🎯 Funcionalidades Principales
 
-Responsive design - Adaptado a todos los dispositivos
+### 🍽️ Navegación por Categorías
+- Desayunos
+- Cafés y bebidas calientes
+- Almuerzo popular
+- Menú del día (actualizado desde Google Sheets)
+- Bocadillos
+- Bebidas
+- Vinos
 
-Navegación intuitiva - Experiencia de usuario optimizada
+### 🔍 Buscador Inteligente
+- Búsqueda en tiempo real
+- Resalta coincidencias
+- Búsqueda en todos los campos (nombre, descripción, precio)
 
-🎨 Características de diseño
+### 🌙 Modo Oscuro
+- Toggle claro/oscuro
+- Preferencia guardada en localStorage
+- Transiciones suaves entre temas
 
-Paleta de colores profesional y atractiva
+### 🌍 Multi-idioma
+- Google Translate integrado
+- Soporte para múltiples idiomas
+- Selector visible en el header
 
-Tipografía legible optimizada para lectura en móviles
+### 📱 Panel Lateral
+- Información del restaurante
+- Horarios
+- Ubicación
+- Redes sociales
+- Opciones de compartir e imprimir
 
-Imágenes de calidad para mayor atractivo visual
+### ⚖️ Cumplimiento Legal
+- Aviso Legal (LSSI)
+- Política de Privacidad (RGPD)
+- Política de Cookies
+- Enlaces en el footer
 
-Layout limpio sin distracciones innecesarias
+## 🎨 Características de Diseño
 
-💼 Caso de uso real
+- **Paleta de colores:** Naranja (#f59e0b) como color principal, grises neutros
+- **Tipografía:** System fonts optimizadas para lectura
+- **Layout:** CSS Grid para la carta, Flexbox para componentes
+- **Animaciones:** Transiciones suaves y hover effects
+- **Accesibilidad:** Contraste adecuado, tamaños de fuente legibles
+- **Modo oscuro:** Fondo negro (#000000) con texto claro
 
-Este proyecto está actualmente en producción, siendo utilizado por clientes reales en un establecimiento de hostelería en funcionamiento.
+## 💡 Personalización
 
-🤝 Contribuir
+### Cambiar información del restaurante
 
-Si quieres contribuir al proyecto:
+Edita la sección `#restaurant-info` en `index.html`:
 
-Fork el repositorio
+```html
+<section id="restaurant-info" style="display: none;">
+    <h1>Tu Restaurante</h1>
+    <p class="address">Tu dirección</p>
+    <p class="phone">Tu teléfono</p>
+    <!-- ... -->
+</section>
+```
 
-Crea una rama para tu feature (git checkout -b feature/mejora)
+### Modificar el menú estático
 
-Commit tus cambios (git commit -am 'Añadir mejora')
+Edita las secciones correspondientes en `index.html`:
+- Desayunos: `#desayunos`
+- Cafés: `#cafe`
+- Bocadillos: `#bocadillos`
+- etc.
 
-Push a la rama (git push origin feature/mejora)
+### Cambiar colores
 
-Abre un Pull Request
+Modifica las variables CSS en `style.css`:
 
-📧 Contacto
+```css
+:root {
+    --primary-color: #f59e0b;
+    --hover-color: #d97706;
+    /* ... */
+}
+```
 
-Edgar Meroño
+### Conectar tu Google Sheet
 
-📧 Email: edgarmerono@gmail.com
+Cambia el `sheetId` en `menu-connector.js`:
 
-🐙 GitHub: @Edgarmp06
+```javascript
+constructor() {
+    this.sheetId = 'TU_GOOGLE_SHEET_ID';
+    // ...
+}
+```
 
-📍 Manises, Valencia
+## 🔧 Mantenimiento
 
-📄 Licencia
+### Actualizar el menú del día
+1. Edita tu Google Sheet
+2. Los cambios se reflejarán automáticamente en la web (máximo 30 min)
+3. O usa el botón 📋 en la web para actualización manual
+
+### Modificar precios o platos fijos
+1. Edita `index.html`
+2. Busca la sección correspondiente
+3. Modifica el HTML
+4. Guarda y sube el archivo
+
+## 📱 Compatibilidad
+
+✅ Chrome/Edge (últimas versiones)
+✅ Firefox (últimas versiones)
+✅ Safari (iOS 12+, macOS)
+✅ Chrome Mobile (Android)
+✅ Safari Mobile (iOS)
+
+## 🔒 Seguridad y Privacidad
+
+- No se recopilan datos personales de usuarios
+- Solo cookies técnicas (modo oscuro, preferencias)
+- Google Translate y Google Sheets con sus respectivas políticas
+- Cumplimiento RGPD y LSSI
+- Información completa en las páginas legales
+
+## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT - mira el archivo LICENSE para más detalles.
 
-📄 Licencia
+## 💼 Caso de Uso Real
 
-Este proyecto está bajo la Licencia MIT - mira el archivo LICENSE para más detalles.
+Este proyecto está actualmente en producción en **Café Restaurante L'Express**, Valencia, siendo utilizado por clientes reales diariamente.
 
-⭐ ¡Si te gusta el proyecto, dale una estrella! ⭐
+---
 
+⭐ **Si te gusta el proyecto, no dudes en darle una estrella en GitHub!** ⭐
+
+*Desarrollado con ❤️ para Café Restaurante L'Express*
