@@ -104,6 +104,7 @@ body {
     border: white 2px solid;
 }
 
+
 .header h1 {
     font-size: 1.5rem;
     font-weight: 700;
@@ -138,6 +139,7 @@ body {
     border-color: #f59e0b;
     box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
 }
+
 /* Loading messages */
 .loading-message {
     grid-column: 1 / -1;
@@ -428,6 +430,38 @@ body {
     margin-top: 0.5rem !important;
 }
 
+/* Premios y Reconocimientos */
+.footer-awards {
+    border-top: 1px solid #34495e;
+    padding: 2rem 0 1rem 0;
+    text-align: center;
+}
+
+.footer-awards h3 {
+    color: #f59e0b;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.awards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* Restaurant Guru Award Badge */
+#b-gold {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#b-gold:hover {
+    transform: scale(1.05);
+}
+
 .footer-disclaimer {
     border-top: 1px solid #34495e;
     padding-top: 1rem;
@@ -463,6 +497,14 @@ body {
 .dark-mode .footer {
     background-color: #000000;
     border-top: 1px solid #333333;
+}
+
+.dark-mode .footer-awards {
+    border-top-color: #333333;
+}
+
+.dark-mode .footer-awards h3 {
+    color: #f59e0b;
 }
 
 .dark-mode .footer-disclaimer {

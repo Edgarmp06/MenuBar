@@ -34,14 +34,21 @@ class CustomMenuUpdater {
     async updateMenuDia() {
         const data = await this.fetchSheetData('MenuDia');
         const menu = { primeros: [], segundos: [], postres: [], precios: {} };
-        
+
         console.log('📊 Datos recibidos de MenuDia:', data);
-        
+
+        // Si no hay datos, mostrar mensaje de error y salir
+        if (!data || data.length === 0) {
+            console.warn('⚠️ No se pudieron cargar datos del menú del día');
+            this.showErrorMessage('#menu-dia', 'Menú del día no disponible temporalmente');
+            return;
+        }
+
         // Procesar datos según TU estructura
         data.forEach(row => {
             if (row.length >= 3) {
                 const [categoria, item, texto] = row;
-                
+
                 // Mapear TUS categorías a las que espera el código
                 if (categoria.includes('Primer plato')) {
                     menu.primeros.push(texto);
@@ -64,23 +71,35 @@ class CustomMenuUpdater {
 
         // Actualizar HTML - Primeros platos
         const primerosUl = document.querySelector('#menu-dia .option-group:nth-child(1) ul');
-        if (primerosUl && menu.primeros.length > 0) {
-            primerosUl.innerHTML = menu.primeros.map(plato => `<li>${plato}</li>`).join('');
-            console.log('✅ Primeros platos actualizados:', menu.primeros);
+        if (primerosUl) {
+            if (menu.primeros.length > 0) {
+                primerosUl.innerHTML = menu.primeros.map(plato => `<li>${plato}</li>`).join('');
+                console.log('✅ Primeros platos actualizados:', menu.primeros);
+            } else {
+                primerosUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar HTML - Segundos platos
         const segundosUl = document.querySelector('#menu-dia .option-group:nth-child(2) ul');
-        if (segundosUl && menu.segundos.length > 0) {
-            segundosUl.innerHTML = menu.segundos.map(plato => `<li>${plato}</li>`).join('');
-            console.log('✅ Segundos platos actualizados:', menu.segundos);
+        if (segundosUl) {
+            if (menu.segundos.length > 0) {
+                segundosUl.innerHTML = menu.segundos.map(plato => `<li>${plato}</li>`).join('');
+                console.log('✅ Segundos platos actualizados:', menu.segundos);
+            } else {
+                segundosUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar HTML - Postres
         const postresUl = document.querySelector('#menu-dia .option-group:nth-child(3) ul');
-        if (postresUl && menu.postres.length > 0) {
-            postresUl.innerHTML = menu.postres.map(postre => `<li>${postre}</li>`).join('');
-            console.log('✅ Postres actualizados:', menu.postres);
+        if (postresUl) {
+            if (menu.postres.length > 0) {
+                postresUl.innerHTML = menu.postres.map(postre => `<li>${postre}</li>`).join('');
+                console.log('✅ Postres actualizados:', menu.postres);
+            } else {
+                postresUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar precios si están disponibles
@@ -105,14 +124,21 @@ class CustomMenuUpdater {
     async updateMenuFinSemana() {
         const data = await this.fetchSheetData('MenuFinSemana');
         const menu = { tapas: [], principales: [], postres: [], precios: {} };
-        
+
         console.log('📊 Datos recibidos de MenuFinSemana:', data);
-        
+
+        // Si no hay datos, mostrar mensaje de error y salir
+        if (!data || data.length === 0) {
+            console.warn('⚠️ No se pudieron cargar datos del menú fin de semana');
+            this.showErrorMessage('#menu-finde', 'Menú fin de semana no disponible temporalmente');
+            return;
+        }
+
         // Procesar datos según TU estructura
         data.forEach(row => {
             if (row.length >= 3) {
                 const [categoria, item, texto] = row;
-                
+
                 // Mapear TUS categorías
                 if (categoria.includes('Tapa')) {
                     menu.tapas.push(texto);
@@ -132,23 +158,35 @@ class CustomMenuUpdater {
 
         // Actualizar HTML - Tapas
         const tapasUl = document.querySelector('#menu-finde .option-group:nth-child(1) ul');
-        if (tapasUl && menu.tapas.length > 0) {
-            tapasUl.innerHTML = menu.tapas.map(tapa => `<li>${tapa}</li>`).join('');
-            console.log('✅ Tapas actualizadas:', menu.tapas);
+        if (tapasUl) {
+            if (menu.tapas.length > 0) {
+                tapasUl.innerHTML = menu.tapas.map(tapa => `<li>${tapa}</li>`).join('');
+                console.log('✅ Tapas actualizadas:', menu.tapas);
+            } else {
+                tapasUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar HTML - Platos principales
         const principalesUl = document.querySelector('#menu-finde .option-group:nth-child(2) ul');
-        if (principalesUl && menu.principales.length > 0) {
-            principalesUl.innerHTML = menu.principales.map(plato => `<li>${plato}</li>`).join('');
-            console.log('✅ Principales actualizados:', menu.principales);
+        if (principalesUl) {
+            if (menu.principales.length > 0) {
+                principalesUl.innerHTML = menu.principales.map(plato => `<li>${plato}</li>`).join('');
+                console.log('✅ Principales actualizados:', menu.principales);
+            } else {
+                principalesUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar HTML - Postres
         const postresUl = document.querySelector('#menu-finde .option-group:nth-child(3) ul');
-        if (postresUl && menu.postres.length > 0) {
-            postresUl.innerHTML = menu.postres.map(postre => `<li>${postre}</li>`).join('');
-            console.log('✅ Postres fin de semana actualizados:', menu.postres);
+        if (postresUl) {
+            if (menu.postres.length > 0) {
+                postresUl.innerHTML = menu.postres.map(postre => `<li>${postre}</li>`).join('');
+                console.log('✅ Postres fin de semana actualizados:', menu.postres);
+            } else {
+                postresUl.innerHTML = '<li>Consultar disponibilidad</li>';
+            }
         }
 
         // Actualizar precio
@@ -178,6 +216,17 @@ class CustomMenuUpdater {
             console.error('❌ Error al actualizar menús:', error);
             this.showNotification('❌ Error al actualizar menús');
         }
+    }
+
+    // Mostrar mensaje de error en lugar del loading
+    showErrorMessage(sectionId, message) {
+        const section = document.querySelector(sectionId);
+        if (!section) return;
+
+        const optionGroups = section.querySelectorAll('.option-group ul');
+        optionGroups.forEach(ul => {
+            ul.innerHTML = `<li style="color: #6b7280; font-style: italic;">${message}</li>`;
+        });
     }
 
     // Mostrar notificación

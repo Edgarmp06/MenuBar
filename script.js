@@ -1,6 +1,5 @@
 // ===== VARIABLES GLOBALES =====
 let activeCategory = 'desayunos';
-let activeAllergens = [];
 let darkMode = localStorage.getItem('darkMode') === 'true';
 
 // ===== INICIALIZACIÓN =====
@@ -58,33 +57,7 @@ function setupEventListeners() {
     if (overlay) {
         overlay.addEventListener('click', () => toggleSidePanel(false));
     }
-    
-    // Filtro de alérgenos
-    const allergenToggle = document.getElementById('allergen-toggle');
-    const allergenDropdown = document.getElementById('allergen-dropdown');
-    const clearFilters = document.getElementById('clear-filters');
-    const applyFilters = document.getElementById('apply-filters');
-    
-    if (allergenToggle) {
-        allergenToggle.addEventListener('click', () => {
-            allergenDropdown.classList.toggle('hidden');
-        });
-    }
-    
-    if (clearFilters) {
-        clearFilters.addEventListener('click', clearAllergenFilters);
-    }
-    
-    if (applyFilters) {
-        applyFilters.addEventListener('click', applyAllergenFilters);
-    }
-    
-    // Checkboxes de alérgenos
-    const allergenCheckboxes = document.querySelectorAll('.allergen-grid input[type="checkbox"]');
-    allergenCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateAllergenSelection);
-    });
-    
+
     // Modo oscuro
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
@@ -114,22 +87,11 @@ function setupEventListeners() {
     if (printBtn) {
         printBtn.addEventListener('click', () => window.print());
     }
-    
-    // Cerrar dropdown al hacer click fuera
-    document.addEventListener('click', function(event) {
-        const allergenFilter = document.querySelector('.allergen-filter');
-        const dropdown = document.getElementById('allergen-dropdown');
-        
-        if (allergenFilter && dropdown && !allergenFilter.contains(event.target)) {
-            dropdown.classList.add('hidden');
-        }
-    });
-    
-    // Esc para cerrar panel y dropdowns
+
+    // Esc para cerrar panel
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             toggleSidePanel(false);
-            document.getElementById('allergen-dropdown').classList.add('hidden');
         }
     });
 }
@@ -150,12 +112,7 @@ function showCategory(categoryId) {
     
     // Actualizar categoría activa
     activeCategory = categoryId;
-    
-    // Aplicar filtros si están activos
-    if (activeAllergens.length > 0) {
-        applyAllergenFilters();
-    }
-    
+
     // Limpiar búsqueda
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
@@ -281,79 +238,6 @@ function clearSearch() {
     }
     
     showAllItems();
-}
-
-// ===== FUNCIONES DE FILTROS DE ALÉRGENOS =====
-function updateAllergenSelection() {
-    const checkedBoxes = document.querySelectorAll('.allergen-grid input[type="checkbox"]:checked');
-    activeAllergens = Array.from(checkedBoxes).map(box => box.value);
-    updateFilterCount();
-}
-
-function updateFilterCount() {
-    const filterCount = document.getElementById('filter-count');
-    const allergenToggle = document.getElementById('allergen-toggle');
-    
-    if (activeAllergens.length > 0) {
-        filterCount.textContent = `(${activeAllergens.length})`;
-        allergenToggle.classList.add('active');
-    } else {
-        filterCount.textContent = '';
-        allergenToggle.classList.remove('active');
-    }
-}
-
-function clearAllergenFilters() {
-    // Desmarcar todos los checkboxes
-    const checkboxes = document.querySelectorAll('.allergen-grid input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    
-    // Limpiar array de alérgenos activos
-    activeAllergens = [];
-    
-    // Actualizar contador
-    updateFilterCount();
-    
-    // Mostrar todos los items
-    showAllItems();
-    
-    // Cerrar dropdown
-    document.getElementById('allergen-dropdown').classList.add('hidden');
-}
-
-function applyAllergenFilters() {
-    if (activeAllergens.length === 0) {
-        showAllItems();
-        document.getElementById('allergen-dropdown').classList.add('hidden');
-        return;
-    }
-    
-    // Filtrar items en la sección activa
-    const activeSection = document.querySelector('.menu-section.active');
-    if (!activeSection) return;
-    
-    const items = activeSection.querySelectorAll('.menu-item, .ingredient');
-    
-    items.forEach(item => {
-        const itemAllergens = item.dataset.allergens || '';
-        const allergenList = itemAllergens.split(',').map(a => a.trim()).filter(a => a);
-        
-        // Verificar si el item contiene algún alérgeno filtrado
-        const hasFilteredAllergen = activeAllergens.some(allergen => 
-            allergenList.includes(allergen)
-        );
-        
-        if (hasFilteredAllergen) {
-            item.style.display = 'none';
-        } else {
-            item.style.display = 'block';
-        }
-    });
-    
-    // Cerrar dropdown
-    document.getElementById('allergen-dropdown').classList.add('hidden');
 }
 
 // ===== FUNCIONES DE PANEL LATERAL =====
@@ -564,19 +448,24 @@ function lazyLoadImages() {
 // ===== INICIALIZACIÓN FINAL =====
 // Verificar si hay elementos críticos y mostrar error si faltan
 function checkCriticalElements() {
-    const criticalElements = [
-        'main-content',
-        'desayunos',
-        'category-nav'
-    ];
-    
-    const missing = criticalElements.filter(id => !document.getElementById(id));
-    
+    const criticalElements = {
+        '#main-content': 'Contenido principal',
+        '#desayunos': 'Sección de desayunos',
+        '.category-nav': 'Navegación de categorías'
+    };
+
+    const missing = [];
+    for (const [selector, name] of Object.entries(criticalElements)) {
+        if (!document.querySelector(selector)) {
+            missing.push(name);
+        }
+    }
+
     if (missing.length > 0) {
         console.error('Elementos críticos faltantes:', missing);
         return false;
     }
-    
+
     return true;
 }
 

@@ -1,4 +1,4 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +8,12 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Restaurant Guru Award CSS -->
+    <link href="https://awards.infcdn.net/2024/r_gold.css" rel="stylesheet"/>
 </head>
 <body>
     <!-- ============ INFORMACIÓN DEL RESTAURANTE ============ -->
@@ -50,20 +53,17 @@
                 </script>
 
                 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-            <div id="google_translate_element"></div>
 
-                
             </div>
             
             <div class="header-content">
                 <img src="/logo.jpg" alt="Logo" class="logo-main" onerror="this.src='logo.jpg';">
-                
+
                 <!-- Buscador -->
                 <div class="search-container">
                     <input type="text" id="search-input" placeholder="Buscar en el menú...">
                 </div>
-                
-                
+
                 <!-- Navegación de categorías -->
                 <nav class="category-nav">
                     <button class="category-btn active" data-category="desayunos">Desayunos</button>
@@ -764,7 +764,21 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Premios y Reconocimientos -->
+        <div class="footer-awards">
+            <h3>Premios y Reconocimientos</h3>
+            <div class="awards-container">
+                <!-- Restaurant Guru Award -->
+                <div id="b-gold" onclick="if(event.target.nodeName.toLowerCase() != 'a') {window.open(this.querySelector('.b-gold_r-link').href);return 0;}">
+                    <a href="https://es.restaurantguru.com/Express-Valencia" class="b-gold_r-link" target="_blank">Café Restaurante L'Express</a>
+                    <p class="b-gold_center">Recomendado</p>
+                    <a href="https://restaurantguru.com" class="b-gold__link" target="_blank">Restaurant Guru</a>
+                    <p class="b-gold_year">2025</p>
+                </div>
+            </div>
+        </div>
+
         <div class="footer-disclaimer">
             <p class="allergen-warning">
                  ESTE ESTABLECIMIENTO SIRVE ALIMENTOS QUE PUEDEN CONTENER ALÉRGENOS. 
